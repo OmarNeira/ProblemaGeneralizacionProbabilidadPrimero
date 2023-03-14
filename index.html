@@ -1,0 +1,359 @@
+<html>
+    <head>
+        <title>Parametrización ejercicio</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    </head>
+    <style>
+        html{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+        /*Caso de fila impar, la vuelve de un color distintivo*/
+        tr:nth-child(even){
+            background-color: #f2f2f2;
+        }
+        th {
+            background-color: #e5e5e5;
+            color: #444;
+        }
+        .contenido{
+            padding: 10%;
+            padding-top: 5%;
+        }
+        footer{
+            text-align: center;
+            background-color: #444;
+            color: #e5e5e5;
+            padding: 2em;
+        }
+        .cabecero{
+            background-color: rgb(199, 199, 199);
+            color: #e5e5e5;
+            padding: 2em;
+        }
+        #err{
+            color: red;
+        }
+    </style>
+    <body onload="inicializar();">
+        <div class="cabecero">
+            <img src="https://www.udistrital.edu.co/themes/custom/versh/logo.png" style="height: 10em;">
+        </div>
+        <div class="contenido">
+            <h2>Probabilidad 19 A 425-82 | Probabilidad</h2><br>
+            <h1>Programa de generalización de un problema de probabilidad</h1>
+            <h3>Desarrollado en Lenguaje de etiquetas de hipertexto (Html), JavaScript (Js) y Hojas de Estilo en Cascada (CSS).</h3>
+            <p>Subtema a tratar: Un modelo probabilístico para un experimento, el caso discreto.</p>
+            <h2>Referencia</h2>
+            <p>Adaptado de: Ejercicio 15, Sección 2 Orden propuesto en Wackerly&Mendenhall&Scheaffer (2022, p15. #2).</p>
+            <h2>Enunciado</h2>
+            <p>Una empresa de exploración petrolera encuentra petróleo o gas en <b>x%</b> de sus perforaciones. Si la empresa perfora dos pozos, los cuatro posibles eventos simples y tres de sus probabilidades asociadas se dan en la tabla siguiente. Encuentre la probabilidad de que la compañía encuentre petróleo o gas 
+            </p>
+            <table>
+                <thead>
+                    <tr><b>Tabla 1.</b> Probabilidades de los eventos.<br>(Usted mismo da los valores a este ejercicio generalizado)</tr>
+                    <tr>
+                        <th>Evento Simple</th>
+                        <th>Resultado primera perforación</th>
+                        <th>Resultado segunda perforación</th>
+                        <th>Probabilidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>E1</td>
+                        <td>Encuentra</td>
+                        <td>Encuentra</td>
+                        <td><input type="number" id="txt_E1" placeholder="0.00%" name="txt_probabilidad" onchange="inicializar(this);"></td>
+                    </tr>
+                    <tr>
+                        <td>E2</td>
+                        <td>Encuentra</td>
+                        <td>No encuentra</td>
+                        <td>?</td>
+                    </tr>
+                    <tr>
+                        <td>E3</td>
+                        <td>No encuentra</td>
+                        <td>Encuentra</td>
+                        <td><input type="number" id="txt_E3" placeholder="0.00%" name="txt_probabilidad" onchange="inicializar(this);"></td>
+                    </tr>
+                    <tr>
+                        <td>E4</td>
+                        <td>No encuentra</td>
+                        <td>No encuentra</td>
+                        <td><input type="number" id="txt_E4" placeholder="0.00%" name="txt_probabilidad" onchange="inicializar(this);"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><i>Nota.</i> Esta tabla contiene los valores a ingresar, para generar la solución al problema planteado, para poder generar resultados debe de estar totalmente llena.</p>
+            <p id="err"></p>
+            <p>
+                Encuentre la probabilidad de que la compañía encuentre petróleo o gas.
+            </p>
+            <p>
+                a) En la primera perforación pero no en la segunda.
+            </p>
+            <p>
+                b) En al menos una de las dos perforaciones.
+            </p>
+            <h2>Teoría aplicada</h2>
+            <p>Para el desarrollo de este ejercicio se utilizara la definición 2.6 de Wackerly&Mendenhall&Scheaffer [1]:</p>
+            <p><b>DEFINICIÓN 2.6:</b>[1] “Suponga que S es un espacio muestral asociado con un experimento. A todo evento A en S (A es el subconjunto de S) le asignamos un número, P(A), llamado probabilidad de A, de modo que se cumplen los siguientes axiomas:
+                Axioma 1: P(A) ≥ 0. 
+                Axioma 2: P(S) = 1. 
+                Axioma 3: Si A1, A2, A3,… forman una secuencia de eventos por pares mutuamente excluyentes en S (es decir, Ai ∩ Aj = ∅ si i ≠ j), entonces
+                P(𝐴1∪𝐴2∪ 𝐴3…,) = ∑(𝑖=1)^∞ (𝑃(𝐴𝑖)).”
+                </p>
+            <h2>Desarrollo de procedimientos</h2>
+            <h3>Paso 1.</h3>
+            <p>Para resolver el punto “a” debemos encontrar la probabilidad del evento 2 que es el evento que nos están  pidiendo, hacemos la sumatoria de la probabilidad de los eventos y la igualamos a 1 (debido a que la suma de todos los eventos debe ser igual a 1), denotando a la probabilidad del evento 2 como “x” se desarrolla la ecuación para despejarla:
+            </p>
+            <table>
+                <thead>
+                    <tr><b>Tabla 2.</b> Probabilidad del evento 2.</tr>
+                    
+                    <tr>
+                        <th>1 - suma de probabilidades</th>
+                        <th>Probabilidad del evento 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><p id="txt_resta" name="txt_paso1">A la espera de valores válidos...</p></th>
+                        <th><p id="txt_total" name="txt_paso1">A la espera de valores válidos...</p></th>
+                    </tr>
+                </tbody>
+            </table>
+            <p><i>Nota.</i> Esta tabla contiene los resultados del cálculo para la probabilidad del evento 2.</p>
+            <h3>Paso 2.</h3>
+            <p>Para resolver el problema del punto “b” sumamos la probabilidad de los eventos en los que encuentran petróleo o gas en alguna de las 2 perforaciones (E1, E2 y E3 respectivamente):</p>
+            <p id="txt_todo">b. A la espera de valores válidos...</p>
+            <p>Hasta el momento tenemos la siguiente tabla y gráfica.</p>
+            <table>
+                <thead>
+                    <tr><b>Tabla 3.</b> Resultados de los eventos.</tr>
+                    <tr>
+                        <th>Evento Simple</th>
+                        <th>Resultado primera perforacion</th>
+                        <th>Resultado segunda perforacion</th>
+                        <th>Probabilidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>E1</td>
+                        <td>Encuentra</td>
+                        <td>Encuentra</td>
+                        <td id="txt_resE1" name="txtRes_E">A la espera de valores válidos...</td>
+                    </tr>
+                    <tr>
+                        <td>E2</td>
+                        <td>Encuentra</td>
+                        <td>No encuentra</td>
+                        <td id="txt_resE2" name="txtRes_E">A la espera de valores válidos...</td>
+                    </tr>
+                    <tr>
+                        <td>E3</td>
+                        <td>No encuentra</td>
+                        <td>Encuentra</td>
+                        <td id="txt_resE3" name="txtRes_E">A la espera de valores válidos...</td>
+                    </tr>
+                    <tr>
+                        <td>E4</td>
+                        <td>No encuentra</td>
+                        <td>No encuentra</td>
+                        <td id="txt_resE4" name="txtRes_E">A la espera de valores válidos...</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><i>Nota.</i> Esta tabla contiene los valores resultantes del problema planteado.</p>
+            <div id="graficaEventos"></div>
+            <p id="txt_cred1"></p>
+            <h2>Resultado</h2>
+            <p id="txtResA">A la espera de valores válidos...</p>
+            <p id="txtResB"></p>
+            <div id="graficaTotal"></div>
+            <p id="txt_cred2"></p>
+            <h2>Referencias</h2>
+            <p>[1] Wackerly&Mendenhall&Scheaffer. (2010). Estadística Matemática (Séptima ed.). Mexico D.F.: Cengage Learning.
+            </p>
+        </div>
+    </body>
+    <footer>
+        <h3>Basado en el trabajo original de:</h3>
+        <p>Gonzalo Alejandro Malagon Quiroga 20201020002</p>
+        <p>Correo institucional: gamalagonq@correo.udistrital.edu.co</p>
+        <h3>Applet por:</h3>
+        <p>Omar Armando Neira Ordoñez 20192020110</p>
+        <p>Correo institucional: oaneirao@udistrital.edu.co</p>
+    </footer>
+    <script type="text/javascript">
+        function inicializar(inputProb){
+            var inputs = document.getElementsByName("txt_probabilidad");
+            for(var i=0;i<inputs.length;i++){
+                var id = inputs[i].id;
+                var value = inputs[i].value;
+                if(value<0){
+                    document.getElementById("err").innerHTML="Error, recuerde que las probabilidades no pueden ser negativas.";
+                    return false;
+                }
+                if(value==""){
+                    return false;
+                }
+                console.log(value+" value de "+id);
+            }
+            verProb(inputProb);
+        }
+        function verProb(inputProb){
+            //Creamos variables
+            var total=Number(0);
+            var txt_suma="1-", txt_total, txt_todo;
+            var txtProb = document.getElementsByName("txt_probabilidad");
+            //console.log(txtProb.length);
+            //Hacemos la suma de los campos dados
+            for(var i=0;i<txtProb.length;i++){
+                var id = txtProb[i].getAttribute("id");
+                var valor = Number(txtProb[i].value);
+                
+                //console.log("id "+id+" valor "+valor);
+                //console.log(inputProb.getAttribute("id")+" OTRO")
+                total=total+valor;
+            }
+            //Creamos una aproximacion de la suma a dos cifras (por como maneja los decimales js)
+            txt_total=Math.round(Number(1-total)*100)/100;
+            //Caso de que las probabilidades pasen de 1
+            if(total>1){
+                //Todos los calculos y campos no dejan continuar sin valores apropiados
+                document.getElementById("err").innerHTML="Error, recuerde que la suma de las probabilidades no puede ser mayor a la unidad (1), en este momento suman: "+total;
+                //Resaltamos tabla en rojo para denotar error
+                for(var i=0;i<txtProb.length;i++){
+                    var cajonError = txtProb[i];
+                    cajonError.style.borderColor = "red";
+                }
+                //Mostramos al usuario textos de espera de valores validos
+                txt_suma="A la espera de valores validos...";
+                txt_total=txt_suma
+                txt_todo="b. "+txt_suma
+            }
+            //Caso en el que no pasan de 1 (Caso correcto)
+            else{
+                //Creamos variables
+                var arregloValores = new Array();
+                var j=0;
+                //Ponemos la tabla con el estilo original y la llenamos con 0 como valor predeterminado
+                for(var i=0;i<txtProb.length;i++){
+                    var cajonError = txtProb[i];
+                    cajonError.style.borderColor = "";
+
+                    if(cajonError.value!=""){
+                        arregloValores[j++]=cajonError.value;
+                    }
+                    else{
+                        arregloValores[j++]=0;
+                    }
+                }
+                //Creamos los textos de la tabla del paso 1 y del desarrollo del punto b
+                txt_suma="1 - ("+arregloValores[0]+" + "+arregloValores[1]+" + "+arregloValores[2]+") = "+"1- "+Math.round(Number(total)*100)/100;
+                txt_todo= "b. ("+arregloValores[0]+" + "+txt_total+" + "+arregloValores[1]+" + "+arregloValores[2]+")";
+                //Quitamos el texto del error
+                document.getElementById("err").innerHTML="";
+                //Ponemos los valores de la tabla del paso 2
+                var arrRes = document.getElementsByName("txtRes_E");
+                var iterador = 0;
+                for(var i=0;i<txtProb.length+1;i++){
+                        if(i!=1){
+                            var valorActual = txtProb[iterador++].value;
+                            if(valorActual!=""){
+                            arrRes[i].innerHTML=valorActual;
+                            }
+                            else{
+                                arrRes[i].innerHTML="0";
+                            }
+                        }
+                        else{
+                            arrRes[i].innerHTML=txt_total;
+                        }
+                    }
+                //Texto que muestra la suma
+                //document.getElementById("err").innerHTML="Bien, suma "+total;
+                    //Creamos las graficas
+                //Grafica probabilidad de eventos
+                crearGraficaProEve();
+                crearGraficaTotal();
+            }
+            //Ponemos los textos de la tabla del paso 1 y del desarrollo del punto b
+            var txt_paso1 = document.getElementsByName("txt_paso1");
+            txt_paso1[0].innerHTML=txt_suma;
+            txt_paso1[1].innerHTML=txt_total;
+            document.getElementById("txt_todo").innerHTML=txt_todo;
+            document.getElementById("txtResA").innerHTML="Como resultado del punto 'a' nos da que la probabilidad de que se encuentre petróleo en la primera perforación pero no en la segunda es de: "+txt_total;
+            
+        }
+        //Funcion que crea la grafica de eventos
+        function crearGraficaProEve(){
+            //Creamos variables
+            var arrGraf = new Array();
+            var resArr = document.getElementsByName("txtRes_E"); //Llamamos la tabla con los resultados
+            
+            //Iteramos sobre la tabla para crear un arreglo con los resultados
+            for(var i=0;i<resArr.length+1;i++){
+                if(i==0){
+                    arrGraf[i]=['Evento Simple', 'Probabilidad'];
+                }
+                else{
+                    arrGraf[i]=["E"+i+" = "+resArr[i-1].innerText,Number(resArr[i-1].innerText)];
+                }
+            }
+            //Damos respectivos creditos
+            document.getElementById("txt_cred1").innerHTML= 'Nota. El gráfico contiene la información de la tabla de resultados (Tabla 3). Generado por Google Charts, por Google Inc; 2023 (<a href="https://developers.google.com/chart/interactive/docs/gallery/piechart" target="_blank">Google developers</a>). En el dominio público.';
+            //Enviamos los resultados a la funcion de graficos, con su titulo y un div (id) donde estara
+            crearGraficoEventos(arrGraf,"Probabilidad de cada evento","graficaEventos")
+        }
+        function crearGraficaTotal(){
+            //Creamos variables
+            var resArr = document.getElementsByName("txtRes_E"); //Llamamos la tabla con los resultados
+            var total=0;
+            //Iteramos sobre la tabla para crear un arreglo con los resultados
+            for(var i=0;i<resArr.length-1;i++){
+                total=Number(resArr[i].innerText)+total;
+            }
+            var arrGraf = [['Evento', 'Probabilidad'],['Encontrar', Number(total)],['No encontrar', Number(1-total)]];
+            //Ponemos los resultados en texto del punto b
+            document.getElementById("txtResB").innerHTML="Como resultado del punto 'b' nos da que la probabilidad de que se encuentre petróleo o gas en al menos una de las 2 perforaciones es de: "+total;
+            //Damos respectivos creditos
+            document.getElementById("txt_cred2").innerHTML= 'Nota. El gráfico contiene la información de los resultados probabilísticos finales. Generado por Google Charts, por Google Inc; 2023 (<a href="https://developers.google.com/chart/interactive/docs/gallery/piechart" target="_blank">Google developers</a>). En el dominio público.';
+            //Enviamos los resultados a la funcion de graficos, con su titulo y un div (id) donde estara
+            crearGraficoEventos(arrGraf,"Probabilidad de encontrar petroleo o gas","graficaTotal")
+        }
+        function crearGraficoEventos(arreglo,titulo,idDiv){
+            // Load google charts
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(dibujarGrafica);
+            
+            // Draw the chart and set the chart values
+            function dibujarGrafica() {
+            var data = google.visualization.arrayToDataTable(arreglo);
+            
+            // Optional; add a title and set the width and height of the chart
+            var options = {
+                'title':titulo, 'width':500, 
+                'height':500,
+                'chartArea':{left:20,top:20,width:'80%',height:'80%'},
+                'fontName':"Tahoma",
+                'legend':{position: 'right', textStyle: {color: 'black', fontSize: 16},alignment: 'center'}};
+            
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById(idDiv));
+            chart.draw(data, options);
+            }
+        }
+        </script>
+</html>
